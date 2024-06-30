@@ -1,0 +1,17 @@
+server:
+  port: 8381
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://localhost:8761/eureka
+
+spring:
+  application:
+    name: inventory-gateway-service
+  cloud:
+    gateway:
+      routes:
+        - id: InventoryManagement
+          predicates:
+            - Path=/product/**
+          uri: lb://InventoryManagement
